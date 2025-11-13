@@ -51,12 +51,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Other settings like DATABASES, TEMPLATES, STATIC, etc.
+
+# ======= Add Authentication Redirects =======
+LOGIN_REDIRECT_URL = 'home'   # Redirect after successful login
+LOGOUT_REDIRECT_URL = 'login' # Redirect after logout
+LOGIN_URL = 'login'           # Redirect if user tries to access login-protected page
+
 ROOT_URLCONF = 'LibraryProject.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
