@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
+# from django.contrib.auth.admin import UserAdmin
+# from .models import CustomUser  # Commented out because we moved it to bookshelf
 
-
+# Comment out all old CustomUser admin code
+"""
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
     list_display = (
@@ -20,3 +21,6 @@ class CustomUserAdmin(UserAdmin):
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
+"""
+
+# Keep other admin registrations if any

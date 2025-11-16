@@ -57,7 +57,7 @@ MIDDLEWARE = [
 LOGIN_REDIRECT_URL = 'home'   # Redirect after successful login
 LOGOUT_REDIRECT_URL = 'login' # Redirect after logout
 LOGIN_URL = 'login'           # Redirect if user tries to access login-protected page
-AUTH_USER_MODEL = 'relationship_app.CustomUser'
+AUTH_USER_MODEL = 'bookshelf.CustomUser'
 
 ROOT_URLCONF = 'LibraryProject.urls'
 
