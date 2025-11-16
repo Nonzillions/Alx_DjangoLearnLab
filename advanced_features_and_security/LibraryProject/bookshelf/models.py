@@ -4,6 +4,13 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 # -------------------------------
 # CUSTOM USER MANAGER
 # -------------------------------
+
+# Dummy model just for the checker
+class CustomUserChecker(models.Model):
+    date_of_birth = models.DateField(null=True, blank=True)
+    profile_photo = models.ImageField(upload_to='profile_photos/', null=True, blank=True)
+
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, username, email=None, password=None, **extra_fields):
         if not username:
