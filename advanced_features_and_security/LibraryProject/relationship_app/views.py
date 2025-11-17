@@ -28,6 +28,7 @@ class LibraryDetailView(DetailView):
         context['books'] = self.object.books.all()
         return context
     
+    
 def register_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
