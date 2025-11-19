@@ -23,7 +23,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-hu2t1wja&ix77b_0)ptwyeczm@g6_%@5dpg=_jy1xjqw@p8(h^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Never run DEBUG = True in production
+DEBUG = False
+
+# Prevent MIME-type sniffing
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Enable browser XSS protection
+SECURE_BROWSER_XSS_FILTER = True
+
+# Prevent iframe embedding (clickjacking protection)
+X_FRAME_OPTIONS = "DENY"
+
+# Make cookies HTTPS-only
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+CSP_DEFAULT_SRC = ("'self'",)
+
 
 ALLOWED_HOSTS = []
 
@@ -50,6 +71,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+MIDDLEWARE.insert(1, 'csp.middleware.CSPMiddleware')
+
 
 # Other settings like DATABASES, TEMPLATES, STATIC, etc.
 
