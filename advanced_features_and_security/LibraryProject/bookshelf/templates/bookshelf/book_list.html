@@ -1,0 +1,9 @@
+<h1>Books</h1>
+
+<ul>
+    {% for b in books %}
+        <li>{{ b.title }} — {{ b.description }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'book_create' %}">Create New Book</a>
