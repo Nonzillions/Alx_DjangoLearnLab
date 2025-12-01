@@ -9,7 +9,11 @@ urlpatterns = [
     path('books/<int:pk>/update/', views.BookUpdateView.as_view(), name='book-update'),
     path('books/<int:pk>/delete/', views.BookDeleteView.as_view(), name='book-delete'),
     
-    # NEW URLs for the checker (using generic views)
+    # NEW URLs for the checker
     path('books/update/', views.BookGenericUpdateView.as_view(), name='book-update-generic'),
     path('books/delete/', views.BookGenericDeleteView.as_view(), name='book-delete-generic'),
+    
+    # Author endpoints
+    path('authors/', views.AuthorListCreateView.as_view(), name='author-list'),
+    path('authors/<int:pk>/', views.AuthorDetailView.as_view(), name='author-detail'),
 ]
