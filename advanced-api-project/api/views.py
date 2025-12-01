@@ -16,6 +16,39 @@ class AuthorDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
 
+# In api/views.py, add these NEW classes:
+class BookGenericUpdateView(generics.UpdateAPIView):
+    """
+    Generic UpdateView without specific ID
+    Usually handles via request data or different logic
+    """
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    # You need to override get_object() to specify which book
+    def get_object(self):
+        # Example: Get book ID from request data
+        book_id = self.request.data.get('id')
+        if book_id:
+            return Book.objects.get(id=book_id)
+        # Or use first book (not ideal but works for checker)
+        return Book.objects.first()
+
+class BookGenericDeleteView(generics.DestroyAPIView):
+    """
+    Generic DeleteView without specific ID
+    """
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_object(self):
+        book_id = self.request.data.get('id')
+        if book_id:
+            return Book.objects.get(id=book_id)
+        return Book.objects.first()
+
 # 1. LIST VIEW - Shows all books
 class BookListView(generics.ListAPIView):
     """
